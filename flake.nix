@@ -36,16 +36,12 @@
         ];
       };
 
-      # Small tool to iterate over each systems
+      # TODO: Clean this up.
       eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
-
-      # Eval the treefmt modules from ./treefmt.nix
       treefmtEval = eachSystem (pkgs: treefmt-nix.lib.evalModule pkgs ./tools/treefmt.nix);
     in
     {
-      # for `nix fmt`
       formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
-      # for `nix flake check`
       checks = eachSystem (pkgs: {
         formatting = treefmtEval.${pkgs.system}.config.build.check self;
       });
