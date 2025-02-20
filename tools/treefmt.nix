@@ -5,5 +5,8 @@
     "LICENSE"
     "*.md"
   ];
-  programs.nixfmt.enable = true;
+  programs = {
+    deadnix.enable = true;
+    nixfmt.enable = true;
+  };
 }

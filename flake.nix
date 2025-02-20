@@ -17,7 +17,7 @@
     let
       lib = nixpkgs.lib;
       system = "x86_64-linux";
-      qubesPackages = final: prev: {
+      qubesPackages = _final: prev: {
         qubes-core-qubesdb = prev.callPackage ./pkgs/qubes-core-qubesdb { };
         qubes-core-vchan-xen = prev.callPackage ./pkgs/qubes-core-vchan-xen { };
         qubes-core-qrexec = prev.callPackage ./pkgs/qubes-core-qrexec { };
@@ -49,9 +49,6 @@
       overlays.default = qubesPackages;
       nixosModules.default =
         {
-          config,
-          lib,
-          pkgs,
           ...
         }:
         {
@@ -68,9 +65,6 @@
         };
       nixosProfiles.default =
         {
-          config,
-          lib,
-          pkgs,
           ...
         }:
         {

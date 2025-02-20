@@ -6,7 +6,6 @@
   coreutils,
   gnugrep,
   icu,
-  lsb-release,
   kmod,
   graphicsmagick,
   pkg-config,
